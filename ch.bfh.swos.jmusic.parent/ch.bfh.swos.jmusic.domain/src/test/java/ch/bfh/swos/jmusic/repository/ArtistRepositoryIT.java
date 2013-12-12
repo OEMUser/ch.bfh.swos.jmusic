@@ -11,7 +11,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import ch.bfh.swos.jmusic.model.Artist;
-import ch.bfh.swos.jmusic.model.Genre;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/persistenceContext.xml")
