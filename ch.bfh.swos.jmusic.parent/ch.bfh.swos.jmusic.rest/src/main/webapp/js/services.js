@@ -7,3 +7,9 @@ services.factory('Genre', ['$resource', function ($resource) {
         'update': {method: 'PUT'}
     });
 }]);
+
+services.factory('Artist', ['$resource', function ($resource) {
+    return $resource('rest/artist/:artistId', {artistId:'@id'}, {
+        'update': {method: 'PUT'}
+    });
+}]);

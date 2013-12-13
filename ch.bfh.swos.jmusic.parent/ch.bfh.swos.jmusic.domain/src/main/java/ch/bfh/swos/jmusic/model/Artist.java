@@ -3,8 +3,6 @@ package ch.bfh.swos.jmusic.model;
 import java.io.Serializable;
 import java.lang.String;
 import java.util.Date;
-import java.util.List;
-
 import javax.persistence.*;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -22,7 +20,7 @@ public class Artist implements Serializable {
 	private String name;
 	@Temporal(TemporalType.DATE)
 	private Date birthday;
-	private List<Title> titles;
+//	private List<Title> titles;
 	private static final long serialVersionUID = 1L;
 
 	public Artist() {
@@ -51,15 +49,16 @@ public class Artist implements Serializable {
 
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
+		System.out.println(this.birthday);		
 	}
 
-	public List<Title> getTitles() {
+/*	public List<Title> getTitles() {
 		return titles;
 	}
 
 	public void setTitles(List<Title> titles) {
 		this.titles = titles;
-	}
+	} */
 
 
 }

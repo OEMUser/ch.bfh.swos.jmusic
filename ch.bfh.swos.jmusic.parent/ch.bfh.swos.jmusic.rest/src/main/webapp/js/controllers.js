@@ -34,3 +34,36 @@ controllers.controller('GenreController', ['$scope', 'Genre', function($scope, G
 		Genre.remove({genreId:id});
     };
 }]);
+
+controllers.controller('ArtistController', ['$scope', 'Artist', function($scope, Artist) {
+    $scope.currentArtist = new Artist();
+    $scope.artists = Artist.query();
+    $scope.showId = false;
+
+    $scope.cancel = function () {
+        $scope.currentArtist = new Artist();
+    };
+
+    $scope.save = function () {
+        var isNew = $scope.currentArtist.id == null;
+        if (isNew) {
+            $scope.currentArtist = Artist.save($scope.currentArtist);
+            $scope.artists.push($scope.currentArtist);
+        } else {
+        	alert("update");
+            $scope.currentArtist = Artist.update($scope.currentArtist);
+            
+        }
+        $scope.cancel();
+    };
+
+    $scope.edit = function (artist) {
+    	$scope.currentArtist = artist;
+    	alert($scope.currentArtist.id);
+    };
+
+    $scope.remove = function (index, id) {
+		$scope.artists.splice(index, 1);
+		Artist.remove({artistId:id});
+    };
+}]);

@@ -28,8 +28,8 @@ public class GenreController {
 	 */
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseBody
-	public GenreDTO createGenre(@RequestBody GenreDTO book) {
-		GenreDTO createdGenre = genreService.create(book);
+	public GenreDTO createGenre(@RequestBody GenreDTO genre) {
+		GenreDTO createdGenre = genreService.create(genre);
 		System.out.println("Genre created with id = " + createdGenre.getId());
 		return createdGenre;
 	}
