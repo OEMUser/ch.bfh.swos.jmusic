@@ -8,4 +8,6 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({ CreateIT.class, ReadIT.class, UpdateIT.class, DeleteIT.class })
 public class AllTests {
 
+
+
 }

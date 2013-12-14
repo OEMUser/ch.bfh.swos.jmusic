@@ -32,6 +32,7 @@ public class ArtistRepositoryIT {
 		
 		//Read
 		Artist readArtist = artistRepository.findOne(artist.getId());
+		System.out.println("read: "+ readArtist.getBirthday());
 		Assert.assertEquals(artist.getName(), readArtist.getName());
 		
 		//Update

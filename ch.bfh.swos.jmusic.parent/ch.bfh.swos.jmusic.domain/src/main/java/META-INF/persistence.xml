@@ -5,5 +5,14 @@
 		<class>ch.bfh.swos.jmusic.model.Title</class>
 		<class>ch.bfh.swos.jmusic.model.Album</class>
 		<class>ch.bfh.swos.jmusic.model.Genre</class>
+					<properties>
+			<property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:h2:~/bookappDB"/>
+			<property name="javax.persistence.jdbc.user" value="bfh"/>
+			<property name="javax.persistence.jdbc.password" value="bfh"/>
+			<property name="eclipselink.ddl-generation.output-mode" value="database"/>
+			<property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
+		</properties>
 	</persistence-unit>
+
 </persistence>

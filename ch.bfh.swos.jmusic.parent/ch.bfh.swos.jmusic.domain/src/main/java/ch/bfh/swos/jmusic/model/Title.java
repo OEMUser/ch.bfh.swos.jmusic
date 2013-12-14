@@ -26,6 +26,7 @@ public class Title implements Serializable {
 	private Date publication;
 	@OneToMany(cascade = PERSIST)
 	private List<Artist> artists;
+	@OneToMany(cascade = PERSIST)
 	private List<Album> albums;
 	private static final long serialVersionUID = 1L;
 
