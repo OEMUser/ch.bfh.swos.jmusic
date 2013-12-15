@@ -4,42 +4,63 @@
 
 <head>
 <title>BFH JMusic REST</title>
+<!-- 
+<script type="text/javascript"	src="jquery-ui-1.10.3/jquery-1.10.2.js"></script>
+<script type="text/javascript"	src="jquery-ui-1.10.3/ui/jquery-ui.js"></script>
 
-<script type="text/javascript"
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script type="text/javascript"
-	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
-<script type="text/javascript"
-	src="http://code.angularjs.org/1.0.1/angular-1.0.1.min.js"></script>
-<script type="text/javascript"
-	src="http://code.angularjs.org/1.0.1/angular-resource-1.0.1.min.js"></script>
+<script type="text/javascript"	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
+
+<script src="bootstrap/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="js/application.js"></script>
+<script type="text/javascript" src="js/controllers.js"></script>
+<script type="text/javascript" src="js/services.js"></script>
+
+
+<link rel="stylesheet" type="text/css"	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css">
+<!-- Bootstrap - - >
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" media="screen">
+// -->
+ 
+ 
+<script type="text/javascript"	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript"	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+<script type="text/javascript"	src="http://code.angularjs.org/1.0.1/angular-1.0.1.min.js"></script>
+<script type="text/javascript"	src="http://code.angularjs.org/1.0.1/angular-resource-1.0.1.min.js"></script>
 
 <script type="text/javascript" src="js/application.js"></script>
 <script type="text/javascript" src="js/controllers.js"></script>
 <script type="text/javascript" src="js/services.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap-datepicker.js"></script>
 
-<link rel="stylesheet" type="text/css"
-	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css">
+<script type="text/javascript" src="js/date.js"></script>
+
+
+<link rel="stylesheet" type="text/css"	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css">
 <!-- Bootstrap -->
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"
-	media="screen">
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"	media="screen"> 
+<link href="bootstrap/css/datepicker.css" rel="stylesheet"	media="screen">  
+ 
+ 
+ 
 </head>
 
 <body style="padding-top: 70px;">
 	<div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
-				<button type="button" class="btn btn-navbar" data-toggle="collapse"
-					data-target=".nav-collapse">
-					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
+				<button type="button" class="btn btn-navbar" data-toggle="collapse"	data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
 				</button>
 				<a class="brand" href="#">jMusic App</a>
 				<div class="nav-collapse collapse">
 					<ul class="nav">
 						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#artist">Artist</a></li>
+						<li><a href="artists.html">Artists</a></li>
+						<li><a href="genres.html">Genres</a></li>
 					</ul>
 				</div>
 				<!--/.nav-collapse -->
@@ -49,12 +70,19 @@
 
 	<div class="container" ng-controller="ArtistController">
 		<h2>Current Artist</h2>
-		<form id="form">
-			<label for="name">Name</label> <input id="name"
-				ng-model="currentArtist.name" /> <br /> <label for="id">Id</label>
-			<input id="id" disabled="disabled" ng-model="currentArtist.id" /> <br />
-			<button ng-click="save()" id="save" class="btn btn-primary">Save
-				Artist</button>
+		<form id="form" name="form">
+			<label for="name">Name</label> <input id="name"	ng-model="currentArtist.name" required="true" /> <br /> 
+			<label for="birthday">Birthday</label> <input type="text" id="birthday" required="true"	name="birthday" ng-model="currentArtist.birthday"   /> <br />
+			 <label for="id">Id</label><input id="id" disabled="disabled" ng-model="currentArtist.id" /> <br />
+             {{errorMsg}}
+			<br />		
+
+<!--             <span ng-show='whatToDisplay(form)=="date"'>Displayed if the date is wrong</span>
+<span ng-show='whatToDisplay(form)=="notdate"'>This is displayed if the form is invalid, but not because of the date format</span>
+<span ng-show='whatToDisplay(form)=="valid"'>Displayed if the form is valid</span> //  -->
+
+			<button ng-click="validation(form)" id="save" class="btn btn-primary">Check Artist</button>
+            <button ng-click="save()" id="save" class="btn btn-primary">Save Artist</button> {{currentArtist.birthday}}
 			<button ng-click="cancel()" id="cancel" class="btn">Cancel</button>
 		</form>
 
@@ -67,6 +95,7 @@
 				<thead>
 					<tr>
 						<th>Name</th>
+						<th>Birthday</th>
 						<th>Id</th>
 						<th>Edit</th>
 						<th>Delete</th>
@@ -75,7 +104,8 @@
 				<tbody>
 					<tr ng-repeat="artist in artists">
 						<td>{{artist.name}}</td>
-						<td>{{artist.id}}</td>
+						<td>{{artist.birthday}}</td>
+						<td >{{artist.id}}</td>
 						<td><button ng-click="edit(artist)" id="edit" class="btn btn-inverse">Edit</button></td>
 						<td><button ng-click="remove($index, artist.id)" id="delete" class="btn btn-danger">Delete</button></td>
 					</tr>

@@ -24,7 +24,7 @@ public class ArtistServiceIT {
 		// Create
 		ArtistDTO newArtist = new ArtistDTO();
 		newArtist.setName("Test");
-//		newArtist.setBirthday(new Date());
+		newArtist.setBirthday(new Date());
 //		System.out.println(newArtist.getBirthday());
 		newArtist = artistService.create(newArtist);
 
