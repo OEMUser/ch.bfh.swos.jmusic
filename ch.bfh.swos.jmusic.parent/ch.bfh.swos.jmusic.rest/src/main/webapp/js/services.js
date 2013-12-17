@@ -13,3 +13,15 @@ services.factory('Artist', ['$resource', function ($resource) {
         'update': {method: 'PUT'}
     });
 }]);
+
+services.factory('Album', ['$resource', function ($resource) {
+    return $resource('rest/album/:albumId', {albumId:'@id'}, {
+        'update': {method: 'PUT'}
+    });
+}]);
+
+services.factory('Title', ['$resource', function ($resource) {
+    return $resource('rest/title/:titleId', {titleId:'@id'}, {
+        'update': {method: 'PUT'}
+    });
+}]);

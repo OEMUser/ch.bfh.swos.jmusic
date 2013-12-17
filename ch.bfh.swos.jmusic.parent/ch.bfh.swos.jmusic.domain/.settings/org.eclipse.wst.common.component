@@ -2,5 +2,6 @@
     <wb-module deploy-name="ch.bfh.swos.jmusic.domain">
         <wb-resource deploy-path="/" source-path="/src/main/java"/>
         <wb-resource deploy-path="/" source-path="/src/main/resources"/>
+        <wb-resource deploy-path="/" source-path="/src/test"/>
     </wb-module>
 </project-modules>

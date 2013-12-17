@@ -17,7 +17,7 @@ controllers.controller('GenreController', ['$scope', 'Genre', function($scope, G
             $scope.currentGenre = Genre.save($scope.currentGenre);
             $scope.genres.push($scope.currentGenre);
         } else {
-        	alert("update");
+//        	alert("update");
             $scope.currentGenre = Genre.update($scope.currentGenre);
             
         }
@@ -26,7 +26,7 @@ controllers.controller('GenreController', ['$scope', 'Genre', function($scope, G
 
     $scope.edit = function (genre) {
     	$scope.currentGenre = genre;
-    	alert($scope.currentGenre.id);
+//    	alert($scope.currentGenre.id);
     };
 
     $scope.remove = function (index, id) {
@@ -34,6 +34,76 @@ controllers.controller('GenreController', ['$scope', 'Genre', function($scope, G
 		Genre.remove({genreId:id});
     };
 }]);
+
+
+controllers.controller('AlbumController', ['$scope', 'Album', function($scope, Album) {
+    $scope.currentAlbum = new Album();
+    $scope.albums = Album.query();
+    $scope.showId = false;
+
+    $scope.cancel = function () {
+        $scope.currentAlbum = new Album();
+    };
+
+    $scope.save = function () {
+        var isNew = $scope.currentAlbum.id == null;
+        if (isNew) {
+            $scope.currentAlbum = Album.save($scope.currentAlbum);
+            $scope.albums.push($scope.currentAlbum);
+        } else {
+//        	alert("update");
+            $scope.currentAlbum = Album.update($scope.currentAlbum);
+            
+        }
+        $scope.cancel();
+    };
+
+    $scope.edit = function (album) {
+    	$scope.currentAlbum = album;
+//    	alert($scope.currentAlbum.id);
+    };
+
+    $scope.remove = function (index, id) {
+		$scope.albums.splice(index, 1);
+		Album.remove({albumId:id});
+    };
+}]);
+
+
+
+controllers.controller('TitleController', ['$scope', 'Title', function($scope, Title) {
+    $scope.currentTitle = new Title();
+    $scope.titles = Title.query();
+    $scope.showId = false;
+
+    $scope.cancel = function () {
+        $scope.currentTitle = new Title();
+    };
+
+    $scope.save = function () {
+        var isNew = $scope.currentTitle.id == null;
+        if (isNew) {
+            $scope.currentTitle = Title.save($scope.currentTitle);
+            $scope.titles.push($scope.currentTitle);
+        } else {
+//        	alert("update");
+            $scope.currentTitle = Title.update($scope.currentTitle);
+            
+        }
+        $scope.cancel();
+    };
+
+    $scope.edit = function (title) {
+    	$scope.currentTitle = title;
+//    	alert($scope.currentTitle.id);
+    };
+
+    $scope.remove = function (index, id) {
+		$scope.titles.splice(index, 1);
+		Title.remove({titleId:id});
+    };
+}]);
+
 
 controllers.controller('ArtistController', ['$scope', 'Artist', function($scope, Artist) {
     $scope.currentArtist = new Artist();
@@ -45,7 +115,7 @@ controllers.controller('ArtistController', ['$scope', 'Artist', function($scope,
     $scope.errorMsg='';
     
     $scope.validation=function(aForm){
-        console.log(aForm)
+        console.log(aForm);
         if(aForm.birthday.$error.pattern)
             $scope.errorMsg='The pattern you entered isn\'t good enough, try again !';
             else{
@@ -74,16 +144,18 @@ controllers.controller('ArtistController', ['$scope', 'Artist', function($scope,
     
     $scope.cancel = function () {
         $scope.currentArtist = new Artist();
+        $scope.currentArtist.birthday = new Date();
     };
 
     $scope.save = function () {
-
+//alert(Date.parse($scope.currentArtist.birthday));
+//alert($scope.currentArtist.birthday);
         var isNew = $scope.currentArtist.id == null;
         if (isNew) {
             $scope.currentArtist = Artist.save($scope.currentArtist);
             $scope.artists.push($scope.currentArtist);
         } else {
-        	alert("update: "+$scope.currentArtist.birthday);
+//        	alert("update: "+$scope.currentArtist.birthday);
             $scope.currentArtist = Artist.update($scope.currentArtist);
             
         }
@@ -92,7 +164,7 @@ controllers.controller('ArtistController', ['$scope', 'Artist', function($scope,
 
     $scope.edit = function (artist) {
     	$scope.currentArtist = artist;
-    	alert($scope.currentArtist.id);
+//    	alert($scope.currentArtist.id);
     };
 
     $scope.remove = function (index, id) {
